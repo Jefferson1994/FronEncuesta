@@ -1,0 +1,72 @@
+<div class="container pt-4">
+  <div class="row">
+    <div class="col-lg-6 offset-lg-3">
+      <div class="card text-center">
+        <div class="card-body">
+          <h3>Encuesta Empresa XYZ</h3>
+          <form >
+            <div class="row">
+              <div class="col">
+                <label for="inputState"></label>
+                <select id="inputState" class="form-control"   (change)="ChangeProvincia($event)" >
+                  <option selected disabled>Seleccione Provincia</option>
+                  <option   *ngFor="let provincia of provincias" [value]="provincia.codigo">
+                           {{provincia.descripcion}}
+                  </option>
+                </select>
+              </div>
+              <div class="col">
+                <label for="inputState"></label>
+                <select id="inputState" class="form-control"  (change)="ChangeCanton($event)" >
+                  <option selected disabled>Seleccione Canton</option>
+                  <option   *ngFor="let canton of cantones"  [value]="canton.codigo">
+                           {{canton.descripcion}}
+                  </option>
+                </select>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+              <label for="inputState"></label>
+              <select id="inputState" class="form-control"  >
+                <option selected disabled>Seleccione Sucursal</option>
+                <option   *ngFor="let sucursal of sucursales"  [value]="sucursal.codigo">
+                         {{sucursal.descripcion}}
+                </option>
+              </select>
+            </div>
+            </div>
+            <br>
+
+            <div class="row">
+              <div class="col">
+                <form class="form-inline">
+
+                  <input class="form-control mr-sm-2" type="search" placeholder="Ingrese Numero de Cedula" aria-label="Search">
+                  <br>
+                  <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
+                </form>
+
+              </div>
+
+            </div>
+            <br>
+            <div>
+              <button class="btn btn-secondary btn-lg mr-3">
+                Volver
+              </button >
+              <div class="space">
+              </div>
+              <button  class="btn btn-dark btn-lg">
+                Agregar
+              </button>
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
