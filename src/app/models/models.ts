@@ -4,8 +4,8 @@ export interface EncuestaModel{
   Idcliente:number,
   IdSucursal:number;
   idPregunta:number;
-
-
-
+  idCategoria:number;
+  valorFinal:string;
+  valorInicial:string;
+  pregunta:string;
 }
-

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { EncuestaModel } from 'src/app/models/models';
 import { EncuestaService } from 'src/app/services/encuesta.service';
 
 
@@ -9,88 +10,62 @@ import { EncuestaService } from 'src/app/services/encuesta.service';
 })
 export class FormEncuestaComponent implements OnInit {
 
-  //Encuesta: EncuestaModel;
-
-  clienteBuscar: any = []
-  encuesta: any =[]
-  provincias: any =[]
-  cantones: any =[]
-  sucursales: any =[]
-  cedula: string=""
-
-
-
-
-
+  clienteBuscar: any
+  encuesta: EncuestaModel[] = []
+  provincias: any = []
+  cantones: any = []
+  sucursales: any = []
+  cedula: string = ''
+  respuesta: string=''
 
   constructor(private encuestaservicio: EncuestaService) { }
 
   ngOnInit(): void {
-
-
     this.encuestaservicio.postPregunta().subscribe(
-      res=>{
-
-        this.encuesta =res;
-
-        console.log(res)
-
+      (res) => {
+        this.encuesta = res as EncuestaModel[];
       },
-      err=>console.log(err)
+      err => console.log(err)
     );
     this.encuestaservicio.postProvincia().subscribe(
-      res=>{
-        this.provincias=res;
-        console.log(res)
-
+      res => {
+        this.provincias = res;
       },
-      err=>console.log(err)
+      err => console.log(err)
     );
   }
-  ChangeProvincia(evento: Event){
 
+  ChangeProvincia(evento: Event) {
     const target = evento.target as HTMLButtonElement;
-
     this.encuestaservicio.postCantones(parseInt(target.value)).subscribe(
-      res=>{
-        this.cantones=res;
-
-
+      res => {
+        this.cantones = res;
       },
-      err=>console.log(err)
+      err => console.log(err)
     );
   }
-  ChangeCanton(evento: Event){
 
+  ChangeCanton(evento: Event) {
     const target = evento.target as HTMLButtonElement;
     this.encuestaservicio.postSucursales(parseInt(target.value)).subscribe(
-
-      res=>{
-
-        this.sucursales=res;
-
-
+      res => {
+        this.sucursales = res;
       },
-      err=>console.log(err)
+      err => console.log(err)
     );
   }
 
-  BuscarCliente(){
+  BuscarCliente() {
     this.encuestaservicio.postBuscarCliente(this.cedula).subscribe(
-
-      res=>{
-        if(res)
-          this.clienteBuscar=res;
-        else
-          this.clienteBuscar=null
-
-        console.log(res)
+      res => {
+        if (res) this.clienteBuscar = res;
       },
-      err=>console.log(err)
+      err => console.log(err)
     );
-
-
   }
 
+  registrarEncuesta(respuesta: EncuestaModel[]){
+    console.log(respuesta);
+  }
 
 }
