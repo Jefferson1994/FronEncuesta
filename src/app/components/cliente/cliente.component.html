@@ -3,27 +3,28 @@
     <div class="col-lg-6 offset-lg-3">
       <div class="card text-center">
         <div class="card-body">
-          <h3>Crear Empledo</h3>
+          <h3>Registro de Clientes</h3>
           <form>
             <div class="row">
               <div class="col">
-                <input type="text" class="form-control" placeholder="Nombre" name="name">
+                <input type="text" class="form-control" placeholder="Nombre" [(ngModel)]="cliente.nombre" name="name">
               </div>
               <div class="col">
-                <input type="text" class="form-control" placeholder="Apellido" name="apellido">
+                <input type="text" class="form-control" placeholder="Apellido" [(ngModel)]="cliente.apellido" name="apellido">
               </div>
 
             </div>
             <div class="row">
               <div class="col">
-                <input type="text" class="form-control form-control-lg mt-3" placeholder="Cedula" name="cedula">
+                <input type="text" class="form-control form-control-lg mt-3" placeholder="Cedula" [(ngModel)]="cliente.cedula"name="cedula">
 
               </div>
               <div class="col">
                 <label for="inputState"></label>
-                <select id="inputState" class="form-control">
-                  <option selected>Sexo</option>
-                  <option>...</option>
+                <select id="inputState" class="form-control" [(ngModel)]="cliente.sexo" name="sexo">
+                  <option disabled>Sexo</option>
+                  <option>Masculino</option>
+                  <option>Femenino</option>
                 </select>
 
               </div>
@@ -37,7 +38,7 @@
               </button >
               <div class="space">
               </div>
-              <button  class="btn btn-dark btn-lg">
+              <button  class="btn btn-dark btn-lg" (click)="saveCliente()">
                 Agregar
               </button>
             </div>

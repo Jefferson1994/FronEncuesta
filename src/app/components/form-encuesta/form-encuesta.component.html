@@ -1,40 +1,91 @@
 <div class="card">
   <h5 class="card-header">Encuesta Empresa XYZ</h5>
   <div class="card-body">
-    <!-- <h5 class="card-title">Special title treatment</h5>
-    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> -->
-    <div class="row" *ngFor="let encuesta of encuesta ">
 
-      <div class="col-9">
-        <span class="p-4 text-center">{{encuesta.idPregunta}}.</span>
+    <form>
+      <div class="row">
+        <div class="col-4">
 
-        <label class="p-1 text-capitalize">{{encuesta.pregunta}}.</label>
-
-      </div>
-      <div class="col" *ngIf="encuesta.idCategoria===1">
-        <div class="form-check form-check-inline">
-          <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-          <label class="form-check-label" for="inlineRadio1">{{encuesta.valorInicial}}</label>
+          <input class="form-control " type="search" placeholder="Ingrese Numero de Cedula" aria-label="Search"
+            [(ngModel)]="cedula" name="cedula">
         </div>
-        <div class="form-check form-check-inline">
-          <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-          <label class="form-check-label" for="inlineRadio2">{{encuesta.valorFinal}}</label>
-        </div>
-      </div>
-      <div class="col" *ngIf="encuesta.idCategoria===2">
-        <label for="customRange3" class="form-label">Example</label>
-        <input type="range" class="form-range" min={{encuesta.valorInicial}} max={{encuesta.valorFinal}} >
-      </div>
-      <div class="col" *ngIf="encuesta.idCategoria===3">
-
-        <textarea class="form-control" placeholder="Ingrese su comentario" rows="3" [maxLength]="4"></textarea>
-        <div class="invalid-feedback">
-          Please enter a message in the textarea.
+        <div class="col-3">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit" name="cedula"
+            (click)="BuscarCliente()">Buscar</button>
         </div>
 
-
       </div>
+      <div *ngIf="!clienteBuscar; else formulario">
+          No existe Cliente.
+      </div>
+    </form>
+    <ng-template #formulario>
+      <form>
+      <div class="row">
+        <label>{{clienteBuscar.nombre}} {{clienteBuscar.apellido}} </label>
+      </div>
+      <div class="row" *ngIf="">
 
-    </div>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
+        <div class="col-2">
+          <select id="inputState" class="form-control" (change)="ChangeProvincia($event)">
+
+            <option selected disabled>Seleccione Provincia</option>
+            <option *ngFor="let provincia of provincias" [value]="provincia.codigo">
+              {{provincia.descripcion}}
+            </option>
+          </select>
+        </div>
+        <div class="col-2">
+          <select id="inputState" class="form-control" (change)="ChangeCanton($event)">
+            <option selected disabled>Seleccione Canton</option>
+            <option *ngFor="let canton of cantones" [value]="canton.codigo">
+              {{canton.descripcion}}
+            </option>
+          </select>
+        </div>
+        <div class="col-2">
+          <select id="inputState" class="form-control">
+            <option selected disabled>Seleccione Sucursal</option>
+            <option *ngFor="let sucursal of sucursales" [value]="sucursal.codigo">
+              {{sucursal.descripcion}}
+            </option>
+          </select>
+        </div>
+      </div>
+      <div class="row" *ngFor="let encuesta of encuesta ">
+
+        <div class="col-9">
+          <span class="p-4 text-center">{{encuesta.idPregunta}}.</span>
+
+          <label class="p-1 text-capitalize">{{encuesta.pregunta}}.</label>
+
+        </div>
+        <div class="col" *ngIf="encuesta.idCategoria===1">
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+            <label class="form-check-label" for="inlineRadio1">{{encuesta.valorInicial}}</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+            <label class="form-check-label" for="inlineRadio2">{{encuesta.valorFinal}}</label>
+          </div>
+        </div>
+        <div class="col" *ngIf="encuesta.idCategoria===2">
+          <label for="customRange3" class="form-label">Example</label>
+          <input type="range" class="form-range" min={{encuesta.valorInicial}} max={{encuesta.valorFinal}}>
+        </div>
+        <div class="col" *ngIf="encuesta.idCategoria===3">
+
+          <textarea class="form-control" placeholder="Ingrese su comentario" rows="3" [maxLength]="400"></textarea>
+          <div class="invalid-feedback">
+            Please enter a message in the textarea.
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <a href="#" class="btn btn-primary">Go somewhere</a>
+      </div>
+    </form>
+    </ng-template>
+
   </div>

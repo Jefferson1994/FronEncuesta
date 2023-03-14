@@ -22,5 +22,8 @@ export class EncuestaService {
   postPregunta(){
     return this.http.post('https://localhost:51824/api/Preguntas',{codigo: -1});
   }
+  postBuscarCliente(CedulaBuscar:String){
+    return this.http.post('https://localhost:51824/api/Cliente',{cedula: CedulaBuscar});
+  }
 
 }

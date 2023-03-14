@@ -8,8 +8,8 @@
             <div class="row">
               <div class="col">
                 <label for="inputState"></label>
-                <select id="inputState" class="form-control"   (change)="ChangeProvincia($event)" >
-                  <option selected disabled>Seleccione Provincia</option>
+                <select class="form-control"  (change)="ChangeProvincia($event)"  name="provincias" >
+                  <option selected disabled >Seleccione Provincia</option>
                   <option   *ngFor="let provincia of provincias" [value]="provincia.codigo">
                            {{provincia.descripcion}}
                   </option>
@@ -19,7 +19,7 @@
               </div>
               <div class="col">
                 <label for="inputState"></label>
-                <select id="inputState" class="form-control"  (change)="ChangeCanton($event)" >
+                <select id="inputState" class="form-control"  (change)="ChangeCanton($event)"    name="cantones">
                   <option selected disabled>Seleccione Canton</option>
                   <option   *ngFor="let canton of cantones"  [value]="canton.codigo">
                            {{canton.descripcion}}
@@ -32,7 +32,7 @@
             </div>
             <div class="row">
               <div class="col">
-                <input type="text" class="form-control form-control-lg mt-3" placeholder="Nombre de la Sucursal" name="cedula">
+                <input type="text" class="form-control form-control-lg mt-3" placeholder="Nombre de la Sucursal"  [(ngModel)]="sucursal.nombre" name="nombre">
 
               </div>
 
@@ -46,7 +46,7 @@
               </button >
               <div class="space">
               </div>
-              <button  class="btn btn-dark btn-lg">
+              <button  class="btn btn-dark btn-lg" (click)="saveSucursal()">
                 Agregar
               </button>
             </div>
